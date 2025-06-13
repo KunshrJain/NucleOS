@@ -1,6 +1,6 @@
 # NucleOS
 
-**NucleOS** is a lightweight, pseudo-bare-metal operating system built specifically for **ESP32 modules**. Designed with minimalism and embedded development in mind, it strips away traditional RTOS overhead and gives you direct control over the ESP32’s hardware — while still providing a usable kernel, simple GUI, and built-in application support.
+**NucleOS** is a lightweight, pseudo-bare-metal operating system built specifically for a range of embedded platforms including **ESP32**, **STM32**, **Arduino-compatible boards**, and **Raspberry Pi**. Designed with minimalism and embedded development in mind, it strips away traditional RTOS overhead and gives you direct control over hardware — while still providing a usable kernel, simple GUI, and built-in application support.
 
 ---
 
@@ -24,7 +24,7 @@
 | 📁 System Applications      | Explorer, shell interface, and basic tools. |
 | 🤖 Chatbot Embedding        | Add your own LLM UI or chatbot client. |
 | 💻 Dev Environment          | Compatible with Linux and Windows. |
-| 📦 Cross-ESP32 Support      | Works on all ESP32 variants (WROOM, WROVER, S2, S3, etc.) |
+| 📦 Cross-Platform Support   | Works on ESP32, STM32, Arduino-compatible boards, and Raspberry Pi. |
 | 🔌 Embedded Friendly        | Small memory footprint, efficient runtime. |
 | 🧪 Extendable Base          | Build your own apps, drivers, or kernel modules. |
 
@@ -32,10 +32,26 @@
 
 ## 🧰 Platform & Tools
 
-- **Supported Chips:** ESP32, ESP32-S2, S3, C3, WROOM, WROVER
-- **Toolchain:** `xtensa-esp32-elf-gcc`, ESP-IDF 5.x (drivers used selectively)
-- **Flashing Tool:** `esptool.py`
-- **Build Systems:** `idf.py` (recommended) or custom Makefile
+- **Supported Chips & Boards:**  
+  - ESP32 (WROOM, WROVER, S2, S3, C3)  
+  - STM32 series  
+  - Arduino-compatible microcontrollers  
+  - Raspberry Pi (various models)
+
+- **Toolchains:**  
+  - `xtensa-esp32-elf-gcc` and ESP-IDF 5.x for ESP32  
+  - ARM GCC toolchains for STM32 and Raspberry Pi  
+  - Arduino IDE / PlatformIO support for Arduino boards
+
+- **Flashing Tools:**  
+  - `esptool.py` for ESP32  
+  - STM32CubeProgrammer or OpenOCD for STM32  
+  - Raspberry Pi bootloader / SD card flashing
+
+- **Build Systems:**  
+  - `idf.py` for ESP32  
+  - CMake / Makefiles for STM32 and Raspberry Pi  
+  - Arduino build system support
 
 ---
 
@@ -48,10 +64,13 @@ nucleos/
 │ └── main.c # First C function (main)
 ├── gui/ # Kernel GUI and user interface layers
 ├── apps/ # Embedded applications (explorer, tools)
-├── CMakeLists.txt # IDF-compatible project definition
+├── ports/ # Platform-specific code and startup files (esp32, stm32, rpi, arduino)
+├── CMakeLists.txt # IDF-compatible project definition (esp32)
+├── Makefile # Optional manual build system
 ├── link.ld # Custom linker script
 ├── LICENSE # MIT License
 └── README.md # This file
+
 
 ---
 
@@ -81,4 +100,3 @@ If you're using NucleOS in a project, let the author know — we’d love to hea
 
 > ⚡ Designed to be minimal. Built to be powerful.  
 > Welcome to **NucleOS**.
-
